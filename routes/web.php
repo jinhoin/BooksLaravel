@@ -82,3 +82,17 @@ Route::get( '/',
         );
     }
 );
+
+Route::get( '/',
+   
+    function (){
+       $items = [];
+    //    $items = ['apple', 'banna', 'tomato'];
+
+        return view(
+            'welcome', [
+                'items' => $items,
+            ]
+      );
+    }
+);
