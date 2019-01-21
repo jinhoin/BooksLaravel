@@ -21,19 +21,64 @@
 //     return "<h1>hello Foo</h1>";
 // });
 // 파마리멑를 정규표현을 써서 제한시켰다 없을경우 bar가 대체한다
-Route::pattern('foo', '[0-9a-zA-Z]{3}');
-// // 파마리터를 바로 받아서 나타낼수도있다 세글자가 아닐경우 제외한다
-Route::get('/{foo?}', function ( $foo = 'bar') {
-    return "{$foo}";
-});
+// Route::pattern('foo', '[0-9a-zA-Z]{3}');
+// // // 파마리터를 바로 받아서 나타낼수도있다 세글자가 아닐경우 제외한다
+// Route::get('/{foo?}', function ( $foo = 'bar') {
+//     return "{$foo}";
+// });
 
-Route::get('/', [
-    'as' => 'home',
+// Route::get('/', [
+//     'as' => 'here',
+//     function (){
+//         return '제이름은 Home입니다';
+//     }
+// ]);
+// 갑자기 라우터가 바껴도 충분히 같은경로로 돌릴수있다 삼위일체로 바꿔줘야한듯싶다
+// Route::get('/here',  function (){
+//     return redirect(route('here'));
+// });
+
+
+// 안된다
+// Route::get('/', 
+//     function (){
+//         return abort('503');
+//         //메세지를 abort 를 써야한다
+//     });
+
+
+// #version01
+// Route::get('/', 
+//     function (){
+//         return view('welcome')->with('name', 'Foo');
+//         //메세지를 abort 를 써야한다
+//  });
+
+// version02
+//  Route::get('/', 
+//     function (){
+//         return view('welcome')->
+//         with([
+//             'name' => 'Foo',
+//             'greeting' => '안녕하세요' 
+             
+//              ]);
+        
+        
+//         //메세지를 abort 를 써야한다
+//  });
+
+// version03
+// 실전형 코드
+
+Route::get( '/',
+   
     function (){
-        return '제이름은 Home입니다';
+       return view(
+            'welcome', [
+                'name' => 'foo',
+                'greeting' => '안녕하세요?',
+            ]
+        );
     }
-]);
-
-Route::get('/home',  function (){
-    return redirect(route('home'));
-});
+);
