@@ -24,7 +24,8 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $hidden = [
+    // 쿼리에서 조회가 불가능해진다
+     protected $hidden = [
         'password', 'remember_token',
     ];
 }

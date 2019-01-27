@@ -70,6 +70,7 @@
 
 // version03
 // 실전형 코드
+Route::resource('articles', 'ArticlesController');
 
 Route::get( '/',
    
@@ -96,3 +97,35 @@ Route::get( '/',
       );
     }
 );
+
+
+Route::get('auth/login', function () {
+    $credentials = [
+        'email' => 'in362@naver.com',
+        'password'  => 'password'
+    ];
+    if (! auth() -> attempt($credentials)) {
+        # code...
+        return '로그인 정보가 유효하지 않습니다';
+    }
+    return redirect('protected');
+});
+
+
+// Route::get('protected', function () {
+//     dump(session()->all());
+
+//     if (! auth()->check() ){
+        
+//         return '누구세요?';
+//     };
+Route::get('protected',['middleware' => 'auth',  function () {
+   }]);
+
+Route::get('auth/logout', function () {
+    auth()->logout();
+    return '또봐요 ^^';
+});
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
