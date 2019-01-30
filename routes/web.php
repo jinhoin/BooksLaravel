@@ -72,6 +72,10 @@
 // 실전형 코드
 Route::resource('articles', 'ArticlesController');
 
+// DB::listen(function ($query){
+//     var_dump($query->sql);
+//     //이벤트 데이터베이스 쿼리를 감지할수있다
+// });
 Route::get( '/',
    
     function (){
