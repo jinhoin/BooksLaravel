@@ -8,11 +8,14 @@
      
       
         @forelse ($articles as $article)
-        <li>{{ $article->content }}  </li>    
-        <small>
-          by {{ $article->user->name}} <i>{{ $article->created_at }}</i>  
-        </small>
-   
+        <h3>{{ $article->title }}</h3>
+        <li>{{ $article->content }} &nbsp&nbsp
+            <small>
+                    by {{ $article->user->name}} <i>{{ $article->created_at }}</i>  
+              </small>
+        </li>    
+       
+        <br/>
         @empty
             <p>글이없습니다</p>    
         @endforelse
