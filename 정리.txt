@@ -1,0 +1,17 @@
+$ php artisan make:migration create_tags_table --create=tags
+## 테이블 이름 생성
+
+
+
+이벤트를 할 경우 장점은
+컨트롤러 코드가 간결해진다
+이벤트 처리 로직을 유연하게 확장하거나 축소할수 있다 
+
+사용자에게 빠른 UI 응답을 제공한다.. 사무겁고 시간이 걸ㅇ리는 일은 이벤트로 던져 다른 클래스에서 처리
+
+
+이벤트 리스너 클래스 
+php artisan make:listener ArticleEventListener --event=article.created
+
+
+$ php artisan make:migration add_last_login_column_users_table --table=usersCreated Migration: 2019_02_01_064831_add_last_login_column_users_table

@@ -1,2 +1,0 @@
-$ php artisan make:migration create_tags_table --create=tags
-## 테이블 이름 생성

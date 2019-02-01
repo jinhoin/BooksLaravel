@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Event;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -76,6 +78,16 @@ Route::resource('articles', 'ArticlesController');
 //     var_dump($query->sql);
 //     //이벤트 데이터베이스 쿼리를 감지할수있다
 // });
+
+Event::listen('article.created', function($article){
+    # 이벤트를 수신한다
+    #  라우터에 쓰기에는 너무 복잡하다 -> EventServiceProvider로 이동
+    var_dump('이벤트를 받았습니다. 받은 데이터는 다음과 같습니다');
+    var_dump($article->toArray());
+});
+
+
+
 Route::get( '/',
    
     function (){

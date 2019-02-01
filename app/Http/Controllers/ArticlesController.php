@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\ArticleRequest;
+use Illuminate\Support\Facades\App;
 
 class ArticlesController extends Controller
 {
@@ -50,29 +51,22 @@ class ArticlesController extends Controller
      */
     public function store(ArticleRequest $request)
     {
-        //return __METHOD__.'은 사용자의 입력한 폼 데이터로 새로운 article 컬렉션을 만듭니다';
-            // $validatedData = $request->validate([
-            //     'title' => 'required|unique:posts|max:255',
-            //     'content' => 'required|min:10',
-            // ],$message);
-            // $rules = [
-            //     'title' => 'required|min:255',
-            //     'content' => 'required',
-            // ];
-           
-            // $message = [
-            //     'title.required' => '제목은 필수입니다',
-            //     'min' => '글자길이를 많이 넣어주세요',
-            //     'content.required' => '내용은 필수입니다',
-            // ];
-            // $validator = \Validator::make($request->all(),$rules, $message)->validate();
-            // //dd(gettype($validatedData));
-            $article = User::find(1)->articles()->create($request->all());
+        
+           $article = User::find(1)->articles()->create($request->all());
 
            if (! $article) {
                return back()->with('flash-message','글이 저장되지 않았습니다.')->whithInput();
-
            }
+
+           ## 이벤트 처리
+        //    var_dump('이벤트를 던집니다');
+           //이벤트 던지는 명
+           // 직접 던지는 거다
+           //    var_dump('article.created.', [$article]);
+           event(new \App\Events\ArticlesEvent($article));
+            //    dump('이벤트를  던졋습니다');
+           // var_dump($article->toArray());
+
            return redirect(route('articles.index'))->with('flash-message','글이 저장되었습니다.');
     }
 
