@@ -79,7 +79,13 @@ class ArticlesController extends Controller
     public function show($id)
     {
         //
-        return __METHOD__.'은 다음 기본키를 가진 article 모델을 조회합니다.'.$id;
+        // echo $foo;
+        
+        $artilce = \App\Article::findOrFail($id);
+
+        
+
+        return $article->toArry();    
     }
 
     /**

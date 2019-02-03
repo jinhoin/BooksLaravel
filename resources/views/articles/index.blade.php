@@ -3,6 +3,9 @@
 @section('content')
     <h1>포럼 글 목록</h1>    
     <hr/>
+        <a href="{{ route('articles.create')}}" class="btn btm-primary btn-block">
+            글쓰기
+        </a>
 
     <ul>
      
