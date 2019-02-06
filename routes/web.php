@@ -1,5 +1,7 @@
 <?php
 
+use App\Article;
+use Illuminate\Mail;
 use Illuminate\Support\Facades\Event;
 
 /*
@@ -145,3 +147,21 @@ Route::get('auth/logout', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//메일 서비스 route
+
+Route::get('mail', function () {
+    $article = Article::with('user')->find(1);
+
+    return Mail::send(
+        'emails.articles.created',
+        compact('article'),
+        function ($message ) use ($article) {
+            $message->to('whe1915@gmail.com');
+            $message->subject('새글이 등록되었습니다 -'. $article->title);
+        }
+    );
+});
+
+
+
