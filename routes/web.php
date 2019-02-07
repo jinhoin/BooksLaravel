@@ -1,7 +1,7 @@
 <?php
 
 use App\Article;
-use Illuminate\Mail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Event;
 
 /*
@@ -158,7 +158,7 @@ Route::get('mail', function () {
         compact('article'),
         function ($message ) use ($article) {
             $message->to('whe1915@gmail.com');
-            $message->subject('새글이 등록되었습니다 -'. $article->title);
+            $message->subject('새글이 등록되었습니다 메일건을오발송햐 -'. $article->title);
         }
     );
 });
