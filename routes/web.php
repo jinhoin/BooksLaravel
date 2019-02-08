@@ -1,6 +1,9 @@
 <?php
 
 use App\Article;
+use App\Documentation;
+// use ParsedownExtra;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Event;
 
@@ -163,5 +166,15 @@ Route::get('mail', function () {
     );
 });
 
+// Route::get('docs/{file?}', function ($file = null){
+//     $text = new Documentation();
+//     $text        = $text->get($file);
+//     // dd($text);
+//     return app(ParsedownExtra::class)->text($text);
+// });
+
+    Route::get('docs/{file?}', 'DocsController@show');
+
+    
 
 
